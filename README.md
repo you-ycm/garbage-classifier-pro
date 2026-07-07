@@ -132,21 +132,21 @@ oro/
 git clone https://github.com/you-ycm/garbage-classifier-pro.git
 cd garbage-classifier-pro
 
-### 2️⃣ 数据库配置
+2️⃣ 数据库配置
 -- 创建数据库
 CREATE DATABASE garbage_classifier DEFAULT CHARACTER SET utf8mb4;
 
-### 3️⃣ 后端启动
+3️⃣ 后端启动
 cd demo
 mvn clean install
 mvn spring-boot:run
 
-### 4️⃣ 前端启动
+4️⃣ 前端启动
 cd frontend
 npm install
 npm run dev
 
-### 5️⃣ 默认账号
+5️⃣ 默认账号
 角色	    用户名	    密码
 管理员	    youwu	    123456
 普通用户	  user1	    123456
