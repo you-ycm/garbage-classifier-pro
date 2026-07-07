@@ -73,39 +73,40 @@
 | **部署环境** | Ubuntu 22.04 + Nginx |
 
 ## 📁 项目结构
+```text
 oro/
-├── demo/ # 后端 Spring Boot 项目
-│ ├── src/main/java/com/example/demo/
-│ │ ├── config/ # 配置类（JWT、Security、CORS）
-│ │ ├── controller/ # 控制器（API 接口）
-│ │ │ ├── AdminController.java # 管理员后台接口
-│ │ │ ├── AuthController.java # 认证接口（登录/注册/密码）
-│ │ │ ├── FavoriteController.java # 收藏接口
-│ │ │ ├── GarbageController.java # 垃圾分类识别接口
-│ │ │ └── KnowledgeController.java # 知识库接口
-│ │ ├── service/ # 业务逻辑层
-│ │ ├── repository/ # 数据访问层（JPA）
-│ │ ├── entity/ # 实体类
-│ │ ├── dto/ # 数据传输对象
-│ │ └── util/ # 工具类（JWT工具）
-│ └── src/main/resources/
-│ └── application.yml # 配置文件（不提交）
-└── frontend/ # 前端 Vue 3 项目
-├── src/
-│ ├── views/ # 页面组件
-│ │ ├── Login.vue # 登录页
-│ │ ├── Register.vue # 注册页
-│ │ ├── History.vue # 识别历史
-│ │ ├── Favorites.vue # 我的收藏
-│ │ ├── KnowledgeBase.vue # 垃圾分类知识
-│ │ ├── Profile.vue # 个人信息
-│ │ └── AdminPanel.vue # 管理员后台
-│ ├── components/ # 公共组件
-│ ├── store/ # Pinia 状态管理
-│ ├── router/ # 路由配置
-│ └── utils/ # 工具函数（axios 封装）
-├── package.json
-└── vite.config.js
+├── demo/                                    # 后端 Spring Boot 项目
+│   └── src/main/java/com/example/demo/
+│       ├── config/                          # 配置类（JWT、Security、CORS）
+│       ├── controller/                      # 控制器（API 接口）
+│       │   ├── AdminController.java         # 管理员后台接口
+│       │   ├── AuthController.java          # 认证接口（登录/注册/密码）
+│       │   ├── FavoriteController.java      # 收藏接口
+│       │   ├── GarbageController.java       # 垃圾分类识别接口
+│       │   └── KnowledgeController.java     # 知识库接口
+│       ├── service/                         # 业务逻辑层
+│       ├── repository/                      # 数据访问层（JPA）
+│       ├── entity/                          # 实体类
+│       ├── dto/                             # 数据传输对象
+│       └── util/                            # 工具类（JWT工具）
+│
+└── frontend/                                # 前端 Vue 3 项目
+    ├── src/
+    │   ├── views/                           # 页面组件
+    │   │   ├── Login.vue                    # 登录页
+    │   │   ├── Register.vue                 # 注册页
+    │   │   ├── History.vue                  # 识别历史
+    │   │   ├── Favorites.vue                # 我的收藏
+    │   │   ├── KnowledgeBase.vue            # 垃圾分类知识
+    │   │   ├── Profile.vue                  # 个人信息
+    │   │   └── AdminPanel.vue               # 管理员后台
+    │   ├── components/                      # 公共组件
+    │   ├── store/                           # Pinia 状态管理
+    │   ├── router/                          # 路由配置
+    │   └── utils/                           # 工具函数（axios 封装）
+    ├── package.json
+    └── vite.config.js
+```
 
 
 ## 📊 数据库设计
