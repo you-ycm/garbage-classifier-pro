@@ -14,8 +14,8 @@ public class DemoApplication {
 
         System.out.println("========================================");
         System.out.println("垃圾分类助手后端启动成功！");
-        System.out.println("API地址: http://localhost:8080/api");
-        System.out.println("健康检查: http://localhost:8080/api/health");
+        System.out.println("API地址: http://192.168.58.128:8080/api");
+        System.out.println("健康检查: http://192.168.58.128:8080/api/health");
         System.out.println("========================================");
     }
 }

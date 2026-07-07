@@ -28,6 +28,10 @@ public class RecognitionRecord {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    // 【新增】关联用户ID
+    @Column(name = "user_id")
+    private Long userId;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();

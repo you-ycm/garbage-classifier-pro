@@ -13,6 +13,10 @@
         <el-form-item prop="confirmPassword">
           <el-input v-model="form.confirmPassword" type="password" placeholder="请再次输入密码" prefix-icon="Lock" show-password />
         </el-form-item>
+        <!-- 🟢【新增】邮箱选填 -->
+        <el-form-item prop="email">
+          <el-input v-model="form.email" placeholder="邮箱 (选填，用于找回密码)" prefix-icon="Message" />
+        </el-form-item>
         <el-button type="primary" @click="handleRegister" :loading="loading" class="register-btn">注册</el-button>
         <div class="login-link">
           已有账号？<span @click="router.push('/login')">去登录</span>
@@ -31,12 +35,14 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const formRef = ref(null)
 const loading = ref(false)
-const API_BASE_URL = 'http://localhost:8080/api'
+
+const API_BASE_URL = 'http://192.168.58.128:8080/api'
 
 const form = reactive({
   username: '',
   password: '',
-  confirmPassword: ''
+  confirmPassword: '',
+  email: '' // 🟢 新增邮箱字段
 })
 
 const validatePass2 = (rule, value, callback) => {
@@ -52,7 +58,9 @@ const validatePass2 = (rule, value, callback) => {
 const rules = {
   username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
   password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-  confirmPassword: [{ validator: validatePass2, trigger: 'blur' }]
+  confirmPassword: [{ validator: validatePass2, trigger: 'blur' }],
+  // 🟢 邮箱选填，仅做格式验证，不做必填校验
+  email: [{ type: 'email', message: '邮箱格式不正确', trigger: 'blur' }]
 }
 
 const handleRegister = async () => {
@@ -61,9 +69,11 @@ const handleRegister = async () => {
     if (valid) {
       loading.value = true
       try {
+        // 🟢 将邮箱字段一起发送给后端
         const response = await axios.post(`${API_BASE_URL}/auth/register`, {
           username: form.username,
-          password: form.password
+          password: form.password,
+          email: form.email || null // 如果为空字符串，则传 null
         })
         if (response.data.code === 200) {
           ElMessage.success('注册成功，请登录')
@@ -72,6 +82,7 @@ const handleRegister = async () => {
           ElMessage.error(response.data.message || '注册失败')
         }
       } catch (error) {
+        console.error('注册错误:', error)
         ElMessage.error('注册失败，用户名可能已存在或后端服务异常')
       } finally {
         loading.value = false

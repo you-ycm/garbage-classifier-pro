@@ -1,33 +1,34 @@
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "operation_log")
+public class OperationLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, length = 50)
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "username", length = 50)
     private String username;
 
-    @Column(length = 100)
-    private String password;
+    @Column(name = "operation", length = 100)
+    private String operation;
 
-    @Column(length = 20)
-    private String role;
+    @Column(name = "detail", length = 500)
+    private String detail;
 
-    @Column(length = 100)
-    private String email;
+    @Column(name = "ip", length = 50)
+    private String ip;
 
     @Column(name = "created_at")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createdAt;
 
     @PrePersist
