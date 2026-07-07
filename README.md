@@ -73,3 +73,101 @@
 | **部署环境** | Ubuntu 22.04 + Nginx |
 
 ## 📁 项目结构
+oro/
+├── demo/ # 后端 Spring Boot 项目
+│ ├── src/main/java/com/example/demo/
+│ │ ├── config/ # 配置类（JWT、Security、CORS）
+│ │ ├── controller/ # 控制器（API 接口）
+│ │ │ ├── AdminController.java # 管理员后台接口
+│ │ │ ├── AuthController.java # 认证接口（登录/注册/密码）
+│ │ │ ├── FavoriteController.java # 收藏接口
+│ │ │ ├── GarbageController.java # 垃圾分类识别接口
+│ │ │ └── KnowledgeController.java # 知识库接口
+│ │ ├── service/ # 业务逻辑层
+│ │ ├── repository/ # 数据访问层（JPA）
+│ │ ├── entity/ # 实体类
+│ │ ├── dto/ # 数据传输对象
+│ │ └── util/ # 工具类（JWT工具）
+│ └── src/main/resources/
+│ └── application.yml # 配置文件（不提交）
+└── frontend/ # 前端 Vue 3 项目
+├── src/
+│ ├── views/ # 页面组件
+│ │ ├── Login.vue # 登录页
+│ │ ├── Register.vue # 注册页
+│ │ ├── History.vue # 识别历史
+│ │ ├── Favorites.vue # 我的收藏
+│ │ ├── KnowledgeBase.vue # 垃圾分类知识
+│ │ ├── Profile.vue # 个人信息
+│ │ └── AdminPanel.vue # 管理员后台
+│ ├── components/ # 公共组件
+│ ├── store/ # Pinia 状态管理
+│ ├── router/ # 路由配置
+│ └── utils/ # 工具函数（axios 封装）
+├── package.json
+└── vite.config.js
+
+
+## 📊 数据库设计
+
+| 表名 | 说明 |
+|------|------|
+| `user` | 用户表（id、username、password、role、email、created_at） |
+| `recognition_record` | 识别记录表（id、image_url、item_name、category、confidence、user_id、created_at） |
+| `favorite` | 收藏表（id、user_id、record_id、created_at）**【新增】** |
+| `knowledge_base` | 知识库表（id、category、name、description、suggestion、sort_order、created_at）**【新增】** |
+| `operation_log` | 操作日志表（id、user_id、username、operation、detail、ip、created_at）**【新增】** |
+
+## 🚀 快速启动
+
+### 环境要求
+- JDK 8+
+- MySQL 8.0+
+- Node.js 18+
+- Maven 3.6+
+
+### 1️⃣ 克隆项目
+```bash
+git clone https://github.com/you-ycm/garbage-classifier-pro.git
+cd garbage-classifier-pro
+
+### 2️⃣ 数据库配置
+-- 创建数据库
+CREATE DATABASE garbage_classifier DEFAULT CHARACTER SET utf8mb4;
+
+### 3️⃣ 后端启动
+cd demo
+mvn clean install
+mvn spring-boot:run
+
+### 4️⃣ 前端启动
+cd frontend
+npm install
+npm run dev
+
+### 5️⃣ 默认账号
+角色	    用户名	    密码
+管理员	    youwu	    123456
+普通用户	  user1	    123456
+
+🎯 核心功能演示
+垃圾分类识别
+上传图片 → 百度 AI 识别 → 展示物品名称、分类、置信度
+
+支持压缩质量选择、批量上传
+
+识别历史
+多条件筛选 + 批量操作（分享/导出/删除/收藏）
+
+管理员后台
+系统概览 + ECharts 统计图表
+
+用户管理 / 识别记录管理 / 操作日志 / 收藏管理 / 知识库管理
+
+👥 团队成员
+成员	  职责	                                 占比
+吴嘉兴	  项目架构、百度 AI 集成、部署运维         	60%
+游昌民	  全栈功能开发、数据库设计、项目测试	        40%
+
+📄 许可证
+本项目采用 MIT License 开源许可证。
